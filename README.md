@@ -1,0 +1,4 @@
+Examples of using different IoC containers to wire up a Jersey web application. Currently the containers are:
+
+* [PicoContainer](http://www.picocontainer.org/) using the [jersey-pico](https://github.com/tomcz/jersey-pico) library
+* [Guice](http://code.google.com/p/google-guice/)
