@@ -18,10 +18,10 @@ public class PicoWebServer extends WebServer {
 
     @Override
     protected void configureJerseyFramework(ServletContextHandler sch) {
-        sch.addEventListener(new ExamplePicoContainerListener());
+        sch.addEventListener(new ExamplePicoConfiguration());
 
         ServletHolder servlet = new ServletHolder("pico", PicoServlet.class);
-        servlet.setInitParameter(PicoServlet.PICO_PROVIDER_KEY, ExamplePicoContainerListener.CONTEXT_KEY);
+        servlet.setInitParameter(PicoServlet.PICO_PROVIDER_KEY, ExamplePicoConfiguration.CONTEXT_KEY);
         servlet.setInitOrder(1);
 
         sch.addServlet(servlet, "/resource/*");

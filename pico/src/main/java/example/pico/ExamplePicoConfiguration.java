@@ -8,7 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-public class ExamplePicoContainerListener implements ServletContextListener {
+public class ExamplePicoConfiguration implements ServletContextListener {
 
     public static final String CONTEXT_KEY = "example.pico.provider";
 
