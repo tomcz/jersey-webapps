@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = 'example.guice.jetty.WebServer'
+mainClassName = 'example.guice.GuiceWebServer'
 
 dependencies {
   compile project(':common')
