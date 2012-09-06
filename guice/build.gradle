@@ -1,0 +1,9 @@
+apply plugin: 'application'
+
+mainClassName = 'example.guice.jetty.WebServer'
+
+dependencies {
+  compile project(':common')
+  compile 'com.google.inject.extensions:guice-servlet:3.0'
+  compile 'com.sun.jersey.contribs:jersey-guice:1.13'
+}

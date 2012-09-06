@@ -1,0 +1,2 @@
+rootProject.name = 'jersey-webapp'
+include 'common', 'guice', 'pico'

@@ -1,0 +1,17 @@
+apply plugin: 'idea'
+
+defaultTasks 'clean', 'build'
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'idea'
+
+  repositories {
+    mavenCentral()
+    maven { url "http://archives.watchitlater.com/maven" }
+  }
+
+  configurations.all {
+    exclude(group: 'commons-logging')
+  }
+}
