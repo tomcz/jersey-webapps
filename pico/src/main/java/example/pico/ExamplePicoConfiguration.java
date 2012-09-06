@@ -10,13 +10,13 @@ import javax.servlet.ServletContextListener;
 
 public class ExamplePicoConfiguration implements ServletContextListener {
 
-    public static final String CONTEXT_KEY = "example.pico.provider";
+    public static final String PICO_PROVIDER_KEY = "example.pico.provider";
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
         PicoConfiguration configuration = new PicoConfigurations(new ResourceModule(), new RepositoryModule());
-        context.setAttribute(CONTEXT_KEY, new ScopedPicoContainerProvider(configuration));
+        context.setAttribute(PICO_PROVIDER_KEY, new ScopedPicoContainerProvider(configuration));
     }
 
     @Override

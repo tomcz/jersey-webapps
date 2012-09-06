@@ -21,7 +21,7 @@ public class PicoWebServer extends WebServer {
         sch.addEventListener(new ExamplePicoConfiguration());
 
         ServletHolder servlet = new ServletHolder("pico", PicoServlet.class);
-        servlet.setInitParameter(PicoServlet.PICO_PROVIDER_KEY, ExamplePicoConfiguration.CONTEXT_KEY);
+        servlet.setInitParameter(PicoServlet.PICO_PROVIDER_KEY, ExamplePicoConfiguration.PICO_PROVIDER_KEY);
         servlet.setInitOrder(1);
 
         sch.addServlet(servlet, "/resource/*");
