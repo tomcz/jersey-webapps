@@ -1,9 +1,11 @@
-apply plugin: 'application'
-
-mainClassName = 'example.guice.GuiceWebServer'
-
 dependencies {
   compile project(':common')
   compile 'com.google.inject.extensions:guice-servlet:3.0'
   compile 'com.sun.jersey.contribs:jersey-guice:1.13'
+}
+
+task(run, type: JavaExec, dependsOn: 'classes') {
+  main = 'example.guice.GuiceWebServer'
+  classpath = sourceSets.main.runtimeClasspath
+  workingDir = rootDir
 }

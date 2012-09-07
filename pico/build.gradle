@@ -1,8 +1,10 @@
-apply plugin: 'application'
-
-mainClassName = 'example.pico.PicoWebServer'
-
 dependencies {
   compile project(':common')
   compile 'com.watchitlater:jersey-pico:1.2'
+}
+
+task(run, type: JavaExec, dependsOn: 'classes') {
+  main = 'example.pico.PicoWebServer'
+  classpath = sourceSets.main.runtimeClasspath
+  workingDir = rootDir
 }
