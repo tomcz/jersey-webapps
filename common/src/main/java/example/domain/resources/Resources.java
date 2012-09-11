@@ -1,14 +1,21 @@
 package example.domain.resources;
 
+import org.json.simple.JSONValue;
+
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
+import java.util.Map;
 
 public class Resources {
 
     public static String uriFor(UriInfo uriInfo, Class resource, Object... pathParams) {
         return uriInfo.getBaseUriBuilder().path(resource).build(pathParams).toASCIIString();
+    }
+
+    public static Response json(Map content) {
+        return okNoCache(JSONValue.toJSONString(content));
     }
 
     public static Response okNoCache(String content) {

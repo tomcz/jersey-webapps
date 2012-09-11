@@ -10,8 +10,7 @@ import javax.ws.rs.core.Response;
 import java.util.Map;
 
 import static com.google.common.collect.Maps.newLinkedHashMap;
-import static example.domain.resources.Resources.okNoCache;
-import static org.json.simple.JSONValue.toJSONString;
+import static example.domain.resources.Resources.json;
 
 @Path("/status")
 public class StatusResource {
@@ -21,10 +20,10 @@ public class StatusResource {
     public Response status() {
         String now = new DateTime().toString();
 
-        Map<String, String> map = newLinkedHashMap();
-        map.put("status", "OK");
-        map.put("asOf", now);
+        Map<String, String> content = newLinkedHashMap();
+        content.put("status", "OK");
+        content.put("asOf", now);
 
-        return okNoCache(toJSONString(map));
+        return json(content);
     }
 }

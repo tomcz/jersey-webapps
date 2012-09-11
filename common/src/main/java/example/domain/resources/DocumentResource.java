@@ -22,11 +22,10 @@ import java.util.Map;
 import static com.google.common.base.Optional.fromNullable;
 import static com.google.common.collect.Maps.newLinkedHashMap;
 import static example.domain.Identity.fromValue;
+import static example.domain.resources.Resources.json;
 import static example.domain.resources.Resources.notFound;
-import static example.domain.resources.Resources.okNoCache;
 import static example.domain.resources.Resources.uriFor;
 import static org.json.simple.JSONValue.parse;
-import static org.json.simple.JSONValue.toJSONString;
 
 @Path("/form/{documentId}")
 public class DocumentResource {
@@ -62,11 +61,15 @@ public class DocumentResource {
     }
 
     private Response render(UriInfo uriInfo, Identity id, Document document) {
-        Map<String, Object> map = newLinkedHashMap();
-        map.put("document", document.toMap());
-        map.put("updateURL", uriFor(uriInfo, DocumentResource.class, id));
-        map.put("indexURL", uriFor(uriInfo, IndexResource.class));
-        return okNoCache(toJSONString(map));
+        Map<String, String> actions = newLinkedHashMap();
+        actions.put("update", uriFor(uriInfo, DocumentResource.class, id));
+        actions.put("index", uriFor(uriInfo, IndexResource.class));
+
+        Map<String, Object> content = newLinkedHashMap();
+        content.put("document", document.toMap());
+        content.put("actions", actions);
+
+        return json(content);
     }
 
     private Document update(Document document, String content) {
