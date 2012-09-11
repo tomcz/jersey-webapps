@@ -1,6 +1,6 @@
 dependencies {
   compile project(':common')
-  compile 'com.watchitlater:jersey-pico:1.2'
+  compile 'com.watchitlater:jersey-pico:1.2.1'
 }
 
 task(run, type: JavaExec, dependsOn: 'classes') {
