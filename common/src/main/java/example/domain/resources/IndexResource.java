@@ -18,7 +18,9 @@ import java.util.Map;
 import static com.google.common.collect.ImmutableMap.of;
 import static com.google.common.collect.Lists.transform;
 import static com.google.common.collect.Maps.newLinkedHashMap;
+import static example.domain.resources.Resources.action;
 import static example.domain.resources.Resources.json;
+import static example.domain.resources.Resources.linkFor;
 import static example.domain.resources.Resources.uriFor;
 
 @Path("/index")
@@ -36,14 +38,14 @@ public class IndexResource {
     public Response index(@Context UriInfo uriInfo) {
         Map<String, Object> content = newLinkedHashMap();
         content.put("documents", links(uriInfo, repository.getIDs()));
-        content.put("actions", of("create", uriFor(uriInfo, DocumentResource.class, Identity.NEW)));
+        content.put("actions", of("new", action(GET.class, uriFor(uriInfo, DocumentResource.class, Identity.NEW))));
         return json(content);
     }
 
     private List<Map<String, String>> links(final UriInfo uriInfo, List<Identity> ids) {
         return transform(ids, new Function<Identity, Map<String, String>>() {
             public Map<String, String> apply(Identity id) {
-                return of("id", id.toString(), "url", uriFor(uriInfo, DocumentResource.class, id));
+                return of("id", id.toString(), "uri", linkFor(uriInfo, DocumentResource.class, id));
             }
         });
     }

@@ -22,6 +22,7 @@ import java.util.Map;
 import static com.google.common.base.Optional.fromNullable;
 import static com.google.common.collect.Maps.newLinkedHashMap;
 import static example.domain.Identity.fromValue;
+import static example.domain.resources.Resources.action;
 import static example.domain.resources.Resources.json;
 import static example.domain.resources.Resources.notFound;
 import static example.domain.resources.Resources.uriFor;
@@ -61,9 +62,9 @@ public class DocumentResource {
     }
 
     private Response render(UriInfo uriInfo, Identity id, Document document) {
-        Map<String, String> actions = newLinkedHashMap();
-        actions.put("update", uriFor(uriInfo, DocumentResource.class, id));
-        actions.put("index", uriFor(uriInfo, IndexResource.class));
+        Map<String, Object> actions = newLinkedHashMap();
+        actions.put("update", action(POST.class, uriFor(uriInfo, DocumentResource.class, id)));
+        actions.put("index", action(GET.class, uriFor(uriInfo, IndexResource.class)));
 
         Map<String, Object> content = newLinkedHashMap();
         content.put("document", document.toMap());
